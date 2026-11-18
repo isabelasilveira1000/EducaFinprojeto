@@ -19,7 +19,7 @@ $pageContent = isset($content) && is_string($content)
     <title><?= e($pageTitle) ?></title>
 
     <!-- Bootstrap -->
-   <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/css/styles.css') ?>">
 <link rel="stylesheet" href="<?= asset('css/estilo.css') ?>">
 </head>
 
