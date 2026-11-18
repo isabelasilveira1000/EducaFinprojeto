@@ -12,6 +12,7 @@ public function index(): void
 $this->render('users/index', [
 'title' => 'Usuários',
 'users' => User::all(),
+
 ]);
 }
 public function show(string $id = ''): void
