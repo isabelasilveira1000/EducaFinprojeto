@@ -1,4 +1,7 @@
-<?php
+﻿<?php
+
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Models\User;
@@ -6,99 +9,110 @@ use App\Validators\UserValidator;
 
 class UserController
 {
-public function index(): void
-{
+    public function index(): void
+    {
+        $this->render('users/index', [
+            'title' => 'Usuários',
+            'users' => User::all(),
+        ]);
+    }
 
-$this->render('users/index', [
-'title' => 'Usuários',
-'users' => User::all(),
+    public function show(string $id = ''): void
+    {
+        $user = User::find((int) $id);
 
-]);
-}
-public function show(string $id = ''): void
-{
-$user = User::find((int) $id);
-if (!$user) {
-http_response_code(404);
-exit('Usuário não encontrado');
-}
-$this->render('users/index', [
-'title' => 'Usuário',
-'users' => [$user],
-]);
-}
+        if (!$user) {
+            http_response_code(404);
+            exit('Usuário não encontrado');
+        }
 
-public function create(): void
-{
-$this->render('users/form', [
-'title' => 'Novo usuário',
-'errors' => [],
-'old' => [],
-'csrf' => $this->csrfToken(),
-]);
-}
+        $this->render('users/index', [
+            'title' => 'Usuário',
+            'users' => [$user],
+        ]);
+    }
 
-public function store(): void
-{
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-http_response_code(405);
-exit('Método não permitido');
-}
-$this->checkCsrf();
+    public function create(): void
+    {
+        $this->render('users/form', [
+            'title' => 'Novo usuário',
+            'errors' => [],
+            'old' => [],
+            'csrf' => $this->csrfToken(),
+        ]);
+    }
 
-$input = [
-'name' => trim($_POST['name'] ?? ''),
-'email' => trim($_POST['email'] ?? ''),
-];
+    public function store(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            exit('Método não permitido');
+        }
 
-$errors = (new UserValidator())->validate($input);
-if (!$errors && User::emailExists($input['email'])) {
-$errors['email'] = 'Este e-mail já está cadastrado.';
-}
-if ($errors) {
-http_response_code(422);
-$this->render('users/form',[
-    'title' => 'Novo usuário',
-    'errors' => $errors,
-    'old' => $input,
-    'csrf' => $this->csrfToken(),
-]);
-return;
-}
+        $this->checkCsrf();
 
-User::create($input['name'], $input['email']);
-header('Location: ' . url('user/index'));
-exit;
-}
+        $input = [
+            'name' => trim($_POST['name'] ?? ''),
+            'email' => trim($_POST['email'] ?? ''),
+        ];
 
-private function csrfToken(): string
-{
-session_status() === PHP_SESSION_NONE && session_start();
-return $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
-}
+        $errors = (new UserValidator())->validate($input);
 
-private function checkCsrf(): void
-{
-session_status() === PHP_SESSION_NONE && session_start();
-if (!hash_equals($_SESSION['csrf'] ?? '', $_POST['csrf'] ?? ''))
-{
-http_response_code(403);
-exit('Token inválido');
-}
-}
+        if (!$errors && User::emailExists($input['email'])) {
+            $errors['email'] = 'Este e-mail já está cadastrado.';
+        }
 
-private function render(string $view, array $data = []): void
-{
-$base = __DIR__ . '/../Views/';$renderFile = static function (string $__file, array $__data):
-string {
-extract($__data, EXTR_SKIP);
-ob_start();
-require $__file;
-return ob_get_clean();
-};
+        if ($errors) {
+            http_response_code(422);
+            $this->render('users/form', [
+                'title' => 'Novo usuário',
+                'errors' => $errors,
+                'old' => $input,
+                'csrf' => $this->csrfToken(),
+            ]);
+            return;
+        }
 
-$content = $renderFile($base . $view . '.php', $data);
-$vars = $data + ['content' => $content];
-echo $renderFile($base . 'layouts/main.php', $vars);
-}
+        User::create($input['name'], $input['email']);
+        header('Location: ' . url('user/index'));
+        exit;
+    }
+
+    private function csrfToken(): string
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        return $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
+    }
+
+    private function checkCsrf(): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!hash_equals($_SESSION['csrf'] ?? '', $_POST['csrf'] ?? '')) {
+            http_response_code(403);
+            exit('Token inválido');
+        }
+    }
+
+    private function render(string $view, array $data = []): void
+    {
+        $base = __DIR__ . '/../Views/';
+
+        $renderFile = static function (string $__file, array $__data): string {
+            extract($__data, EXTR_SKIP);
+            ob_start();
+            require $__file;
+            return ob_get_clean();
+        };
+
+        $content = $renderFile($base . $view . '.php', $data);
+        $vars = $data + ['content' => $content];
+
+        echo $renderFile($base . 'layouts/main.php', $vars);
+    }
 }
