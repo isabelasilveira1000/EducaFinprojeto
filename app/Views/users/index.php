@@ -1,7 +1,7 @@
 
 <?php
 
-// $disciplinas vem do HomeController
+/** @var array<string, array<string, mixed>> $disciplinas Recebido do HomeController. */
 $svg = static fn (string $inner, int $s = 30): string =>
     '<svg width="' . $s . '" height="' . $s . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' . $inner . '</svg>';
 ?>

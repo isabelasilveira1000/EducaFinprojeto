@@ -6,6 +6,8 @@ namespace App\Controllers;
 
 use App\Models\Disciplina;
 
+require_once __DIR__ . '/../Models/Disciplina.php';
+
 class DisciplinaController extends BaseController
 {
     // Endereço: disciplina/show/educacao-fiscal
@@ -18,7 +20,7 @@ class DisciplinaController extends BaseController
             exit('Disciplina não encontrada');
         }
 
-        $this->render('disciplinas/show', [
+        $this->render('diciplinas/show', [
             'title' => $disciplina['nome'] . ' - EducaFin',
             'disciplina' => $disciplina,
             'disciplinaAtiva' => $disciplina['slug'],

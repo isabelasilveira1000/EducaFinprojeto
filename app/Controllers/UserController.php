@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Disciplina;
 use App\Validators\UserValidator;
+
+require_once __DIR__ . '/../Models/Disciplina.php';
 
 class UserController
 {
@@ -14,6 +17,7 @@ class UserController
         $this->render('users/index', [
             'title' => 'Usuários',
             'users' => User::all(),
+            'disciplinas' => Disciplina::all(),
         ]);
     }
 
@@ -29,6 +33,7 @@ class UserController
         $this->render('users/index', [
             'title' => 'Usuário',
             'users' => [$user],
+            'disciplinas' => Disciplina::all(),
         ]);
     }
 

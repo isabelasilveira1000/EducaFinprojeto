@@ -1,5 +1,9 @@
-<?php
+<?php 
 // $disciplina vem do DisciplinaController
+if (!isset($disciplina) || !is_array($disciplina)) {
+    http_response_code(500);
+    exit('A disciplina não foi enviada pelo controller.');
+}
 $d = $disciplina;
 $n = count($d['conteudos']);
 ?>
