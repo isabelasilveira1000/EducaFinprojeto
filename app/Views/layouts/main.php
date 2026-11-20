@@ -1,4 +1,7 @@
 <?php
+/** @var string|null $title Recebido pelo controller. */
+/** @var string|null $content HTML da view renderizada pelo controller. */
+/** @var string|null $disciplinaAtiva Slug da disciplina atual, quando houver. */
 $pageTitle = isset($title) && is_string($title)
     ? $title
     : 'EducaFin - Educação Financeira';
@@ -8,6 +11,7 @@ $pageContent = isset($content) && is_string($content)
     : '';
 
 // Menu e rodapé listam as disciplinas; $disciplinaAtiva vem do controller
+require_once __DIR__ . '/../../Models/Disciplina.php';
 $disciplinasMenu = \App\Models\Disciplina::all();
 $ativa = isset($disciplinaAtiva) && is_string($disciplinaAtiva) ? $disciplinaAtiva : '';
 ?>
