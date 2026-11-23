@@ -33,7 +33,7 @@ $svg = static fn (string $inner, int $s = 30): string =>
       <h2>Selic</h2>
       <p class="ef-cls">substantivo feminino</p>
       <p class="ef-def">Taxa básica de juros da economia brasileira, definida pelo Comitê de Política Monetária (Copom) do Banco Central. Serve de referência para empréstimos e investimentos.</p>
-      <a class="ef-more" href="<?= e(url('disciplina/show/economia')) ?>">Estudar economia
+      <a class="ef-more" href="<?= e(url('disciplina/conteudo/economia/o-que-e-inflacao')) ?>">Estudar economia
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </article>
@@ -45,7 +45,7 @@ $svg = static fn (string $inner, int $s = 30): string =>
   <p class="ef-sub">Escolha um tema e comece a estudar.</p>
   <div class="ef-grid">
     <?php foreach ($disciplinas as $d): $n = count($d['conteudos']); ?>
-      <a class="ef-disc" href="<?= e(url('disciplina/show/' . $d['slug'])) ?>" style="--bg-i:<?= e($d['bg']) ?>;--fg-i:<?= e($d['fg']) ?>">
+      <a class="ef-disc" href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $d['conteudos'][0]['slug'])) ?>" style="--bg-i:<?= e($d['bg']) ?>;--fg-i:<?= e($d['fg']) ?>">
         <span class="ef-ico"><?= $svg($d['icone']) ?></span>
         <div>
           <h3><?= e($d['nome']) ?></h3>
@@ -62,7 +62,7 @@ $svg = static fn (string $inner, int $s = 30): string =>
   <p class="ef-sub">Três leituras curtas para pegar o ritmo.</p>
   <div class="ef-posts" id="ef-posts">
     <?php foreach (array_slice($disciplinas, 0, 3) as $d): $c = $d['conteudos'][0]; ?>
-      <a class="ef-post" href="<?= e(url('disciplina/show/' . $d['slug'])) ?>" style="--fg-i:<?= e($d['fg']) ?>">
+      <a class="ef-post" href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $c['slug'])) ?>" style="--fg-i:<?= e($d['fg']) ?>">
         <span><?= e($d['nome']) ?></span>
         <h3><?= e($c['titulo']) ?></h3>
         <p><?= e($c['resumo']) ?></p>
@@ -82,7 +82,7 @@ $svg = static fn (string $inner, int $s = 30): string =>
           <h3><?= e($d['nome']) ?></h3>
           <ul>
             <?php foreach ($d['conteudos'] as $c): ?>
-              <li><a href="<?= e(url('disciplina/show/' . $d['slug'])) ?>"><?= e($c['titulo']) ?></a></li>
+              <li><a href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $c['slug'])) ?>"><?= e($c['titulo']) ?></a></li>
             <?php endforeach; ?>
           </ul>
         </div>

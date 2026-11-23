@@ -69,7 +69,7 @@ $ativa = isset($disciplinaAtiva) && is_string($disciplinaAtiva) ? $disciplinaAti
             <ul>
                 <?php foreach ($disciplinasMenu as $d): ?>
                     <li>
-                        <a href="<?= e(url('disciplina/show/' . $d['slug'])) ?>"
+                        <a href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $d['conteudos'][0]['slug'])) ?>"
                            class="<?= $ativa === $d['slug'] ? 'is-active' : '' ?>"
                            <?= $ativa === $d['slug'] ? 'aria-current="page"' : '' ?>><?= e($d['nome']) ?></a>
                     </li>
@@ -101,7 +101,7 @@ $ativa = isset($disciplinaAtiva) && is_string($disciplinaAtiva) ? $disciplinaAti
                 <h4>Disciplinas</h4>
                 <ul>
                     <?php foreach ($disciplinasMenu as $d): ?>
-                        <li><a href="<?= e(url('disciplina/show/' . $d['slug'])) ?>"><?= e($d['nome']) ?></a></li>
+                        <li><a href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $d['conteudos'][0]['slug'])) ?>"><?= e($d['nome']) ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -126,6 +126,9 @@ $ativa = isset($disciplinaAtiva) && is_string($disciplinaAtiva) ? $disciplinaAti
 
     <!-- JavaScript do novo visual -->
     <script src="<?= asset('js/educafin.js') ?>"></script>
+
+    <!-- Interação do quiz das aulas -->
+    <script src="<?= asset('js/quiz-conteudo.js') ?>"></script>
 
 </body>
 </html>
