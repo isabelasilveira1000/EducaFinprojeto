@@ -29,12 +29,13 @@ class User
         return (bool) $stmt->fetchColumn();
     }
 
-    public static function create(string $name, string $email): int
+    public static function create(string $name, string $email, string $phone, string $password): int
     {
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = Database::connect()->prepare(
-            'INSERT INTO users (name, email) VALUES (?, ?)'
+            'INSERT INTO users (name, email, phone, password_hash) VALUES (?, ?, ?, ?)'
         );
-        $stmt->execute([$name, $email]);
+        $stmt->execute([$name, $email, $phone, $passwordHash]);
         return (int) Database::connect()->lastInsertId();
     }
 }

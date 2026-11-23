@@ -1,5 +1,5 @@
 <?php
-/** @var array<string,string> $errors Erros por campo (chaves: name, email). */
+/** @var array<string,string> $errors Erros por campo. */
 /** @var array<string,string> $old Valores digitados antes do erro. */
 /** @var string $csrf Token CSRF gerado pelo controller. */
 $errors = $errors ?? [];
@@ -32,6 +32,27 @@ $old = $old ?? [];
                        <?= isset($errors['email']) ? 'aria-invalid="true" aria-describedby="email-erro"' : '' ?>>
                 <?php if (isset($errors['email'])): ?>
                     <p class="ef-error" id="email-erro"><?= e($errors['email']) ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="ef-field<?= isset($errors['phone']) ? ' has-error' : '' ?>">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone"
+                       value="<?= e($old['phone'] ?? '') ?>"
+                       autocomplete="tel" inputmode="tel" required
+                       <?= isset($errors['phone']) ? 'aria-invalid="true" aria-describedby="phone-erro"' : '' ?>>
+                <?php if (isset($errors['phone'])): ?>
+                    <p class="ef-error" id="phone-erro"><?= e($errors['phone']) ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="ef-field<?= isset($errors['password']) ? ' has-error' : '' ?>">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password"
+                       autocomplete="new-password" minlength="8" maxlength="72" required
+                       <?= isset($errors['password']) ? 'aria-invalid="true" aria-describedby="password-erro"' : '' ?>>
+                <?php if (isset($errors['password'])): ?>
+                    <p class="ef-error" id="password-erro"><?= e($errors['password']) ?></p>
                 <?php endif; ?>
             </div>
 

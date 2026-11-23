@@ -59,6 +59,8 @@ class UserController
         $input = [
             'name' => trim($_POST['name'] ?? ''),
             'email' => trim($_POST['email'] ?? ''),
+            'phone' => trim($_POST['phone'] ?? ''),
+            'password' => $_POST['password'] ?? '',
         ];
 
         $errors = (new UserValidator())->validate($input);
@@ -69,16 +71,18 @@ class UserController
 
         if ($errors) {
             http_response_code(422);
+            $old = $input;
+            unset($old['password']);
             $this->render('users/form', [
                 'title' => 'Novo usuário',
                 'errors' => $errors,
-                'old' => $input,
+                'old' => $old,
                 'csrf' => $this->csrfToken(),
             ]);
             return;
         }
 
-        User::create($input['name'], $input['email']);
+        User::create($input['name'], $input['email'], $input['phone'], $input['password']);
         header('Location: ' . url('user/index'));
         exit;
     }
