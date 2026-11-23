@@ -5,6 +5,7 @@ $oldValues = isset($old) && is_array($old) ? $old : [];
 $formErrors = isset($errors) && is_array($errors) ? $errors : [];
 ?>
 
+<div class="ef-narrow">
 <h1><?= e($formTitle) ?></h1>
 
 <form method="post" action="<?= url('user/store') ?>" data-validate>
@@ -26,3 +27,4 @@ $formErrors = isset($errors) && is_array($errors) ? $errors : [];
 
     <button type="submit">Salvar</button>
 </form>
+</div>

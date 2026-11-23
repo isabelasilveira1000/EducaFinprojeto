@@ -16,11 +16,13 @@ background: #1f3864;
 }
 .topo a { color: #fff; margin-right: 1rem; text-decoration: none; }
 
-main { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+/* só para telas simples (ex.: formulário de cadastro) */
+.ef-narrow { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
 
-label { display: block; margin-top: 1rem; }
-input { width: 100%; padding: 0.5rem; }
-button { margin-top: 1rem; padding: 0.5rem 1.25rem; }
+.ef-narrow h1 { font-size: 2rem; margin: 0 0 1rem; }
+.ef-narrow label { display: block; margin-top: 1rem; }
+.ef-narrow input { width: 100%; padding: 0.5rem; }
+.ef-narrow button { margin-top: 1rem; padding: 0.5rem 1.25rem; }
 
 .erro { color: #b00020; margin: 0.25rem 0 0; }
 .lista li { margin: 0.5rem 0; }
