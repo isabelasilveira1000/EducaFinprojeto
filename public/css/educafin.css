@@ -1164,3 +1164,72 @@
         text-align: center;
     }
 }
+
+/* PERGUNTAS FREQUENTES */
+
+.ef-faq {
+    max-width: 900px;
+    margin: 35px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ef-faq-item {
+    background: var(--ef-card);
+    border: 1px solid var(--ef-line);
+    border-radius: 16px;
+    padding: 20px 24px;
+    transition: .25s ease;
+}
+
+.ef-faq-item:hover {
+    border-color: var(--ef-green);
+    transform: translateY(-2px);
+}
+
+.ef-faq-item summary {
+    color: var(--ef-ink);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.ef-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ef-faq-item summary::after {
+    content: "+";
+    color: var(--ef-green);
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.ef-faq-item[open] summary::after {
+    content: "−";
+}
+
+.ef-faq-item p {
+    color: var(--ef-soft);
+    line-height: 1.8;
+    font-size: 14px;
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--ef-line);
+}
+
+@media (max-width: 600px) {
+    .ef-faq-item {
+        padding: 17px;
+    }
+
+    .ef-faq-item summary {
+        font-size: 14px;
+    }
+}

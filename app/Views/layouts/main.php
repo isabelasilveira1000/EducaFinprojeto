@@ -1,4 +1,4 @@
-```php
+
 <?php
 /** @var string|null $title */
 /** @var string|null $content */
