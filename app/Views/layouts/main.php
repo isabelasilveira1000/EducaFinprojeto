@@ -59,6 +59,7 @@ $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/estilo.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/educafin.css') ?>">
+    
 </head>
 
 <body id="page-top" class="ef-body">

@@ -26,3 +26,348 @@ background: #1f3864;
 
 .erro { color: #b00020; margin: 0.25rem 0 0; }
 .lista li { margin: 0.5rem 0; }
+
+
+/* =================================
+   PERGUNTAS FREQUENTES - EDUCAFIN
+================================= */
+
+.ef-faq-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 35px;
+}
+
+.ef-faq-heading h2 {
+    color: var(--ef-ink);
+    font-size: clamp(25px, 4vw, 36px);
+    margin: 15px 0 10px;
+    font-weight: 800;
+}
+
+.ef-faq {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.ef-faq-item {
+    background: var(--ef-card);
+    border: 1px solid var(--ef-line);
+    border-radius: 15px;
+    padding: 20px 23px;
+    transition: .25s ease;
+}
+
+.ef-faq-item:hover {
+    border-color: var(--ef-green);
+    box-shadow: 0 5px 16px rgba(6, 48, 28, .06);
+}
+
+.ef-faq-item summary {
+    color: var(--ef-ink);
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.ef-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ef-faq-item summary::after {
+    content: "+";
+    color: var(--ef-green);
+    font-size: 25px;
+    font-weight: 400;
+    flex-shrink: 0;
+}
+
+.ef-faq-item[open] {
+    border-color: var(--ef-green);
+    background: var(--ef-card);
+}
+
+.ef-faq-item[open] summary::after {
+    content: "−";
+}
+
+.ef-faq-item p {
+    color: var(--ef-soft);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--ef-line);
+}
+
+.ef-faq-footer {
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding: 20px;
+    text-align: center;
+    color: var(--ef-green);
+    background: var(--ef-chip);
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .ef-faq-item {
+        padding: 17px;
+    }
+
+    .ef-faq-item summary {
+        font-size: 14px;
+    }
+}
+
+/* ===== FAQ INTERATIVA ===== */
+
+.ef-faq-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 30px 0;
+}
+
+.ef-faq-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fffefb;
+    border: 1px solid #e8e4d9;
+    border-radius: 14px;
+    padding: 12px 16px;
+}
+
+.ef-faq-search input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #06301c;
+    font-size: 16px;
+}
+
+.ef-faq-search button {
+    border: none;
+    background: transparent;
+    color: #0b5d3b;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.ef-faq-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.faq-cat {
+    border: 1px solid #dce8df;
+    background: #fffefb;
+    color: #0b5d3b;
+    padding: 9px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.faq-cat:hover,
+.faq-cat.active {
+    background: #0b5d3b;
+    color: white;
+    border-color: #0b5d3b;
+}
+
+.ef-faq-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: #4f5a52;
+    font-size: 14px;
+}
+
+.ef-faq-status button,
+.ef-faq-surpresa {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    background: #dcf0e6;
+    color: #06301c;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+
+.ef-faq-item {
+    background: #fffefb;
+    border: 1px solid #e8e4d9;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: .25s ease;
+}
+
+.ef-faq-item[hidden] {
+    display: none !important;
+}
+
+.ef-faq-item summary {
+    padding: 19px 22px;
+    color: #06301c;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.ef-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ef-faq-item summary::after {
+    content: "+";
+    color: #0b5d3b;
+    font-size: 23px;
+    transition: transform .2s ease;
+}
+
+.ef-faq-item[open] summary::after {
+    content: "−";
+}
+
+.ef-faq-item[open] {
+    border-color: #0b5d3b;
+    box-shadow: 0 5px 18px rgba(6, 48, 28, .07);
+}
+
+.ef-faq-item p {
+    padding: 0 22px 20px;
+    margin: 0;
+    color: #4f5a52;
+    line-height: 1.7;
+}
+
+.ef-faq-vazio {
+    padding: 25px;
+    text-align: center;
+    color: #4f5a52;
+    background: #fffefb;
+    border: 1px dashed #d6dfd8;
+    border-radius: 14px;
+}
+
+.ef-faq-surpresa {
+    background: #f4c94a;
+    margin-top: 12px;
+}
+
+.faq-destaque {
+    border: 2px solid #f4c94a;
+    box-shadow: 0 0 0 4px rgba(244, 201, 74, .18);
+}
+
+@media (max-width: 600px) {
+    .ef-faq-status {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .ef-faq-status button,
+    .ef-faq-surpresa {
+        width: 100%;
+    }
+}
+
+/* ===== CORREÇÃO DO ALINHAMENTO DA FAQ ===== */
+
+#duvidas {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+#duvidas .ef-faq-tools {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+}
+
+#duvidas .ef-faq-search {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+#duvidas .ef-faq-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+#duvidas .faq-cat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+}
+
+#duvidas .ef-faq-status {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+#duvidas .ef-faq-item {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#duvidas button {
+    font-family: inherit;
+}
+
+#duvidas .ef-faq-surpresa {
+    align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+    #duvidas .ef-faq-status {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #duvidas .ef-faq-categorias {
+        gap: 8px;
+    }
+
+    #duvidas .ef-faq-surpresa {
+        width: 100%;
+    }
+}
+#faqLista .ef-faq-item[hidden] {
+    display: none !important;
+}
