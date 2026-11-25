@@ -38,3 +38,45 @@ function asset(string $path): string
 
     return url($path) . ($version === false ? '' : '?v=' . $version);
 }
+
+// csrf_token(): token da sessão, usado nos formulários
+function csrf_token(): string
+{
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    return $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
+}
+
+// csrf_check(): confere o token enviado por um formulário POST
+function csrf_check(): bool
+{
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $enviado = $_POST['csrf'] ?? '';
+
+    return is_string($enviado) && hash_equals((string) ($_SESSION['csrf'] ?? ''), $enviado);
+}
+
+// user_id(): id de quem está logado (0 quando ninguém está)
+function user_id(): int
+{
+    return (int) ($_SESSION['user_id'] ?? 0);
+}
+
+// flash_set() / flash_get(): aviso que aparece uma vez só na próxima página
+function flash_set(string $msg, string $tipo = 'ok'): void
+{
+    $_SESSION['flash'] = ['msg' => $msg, 'tipo' => $tipo];
+}
+
+function flash_get(): ?array
+{
+    $flash = $_SESSION['flash'] ?? null;
+    unset($_SESSION['flash']);
+
+    return is_array($flash) ? $flash : null;
+}
