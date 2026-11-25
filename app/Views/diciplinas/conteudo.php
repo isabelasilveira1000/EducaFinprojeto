@@ -48,7 +48,7 @@ $exemplos = is_array($conteudo['exemplos'] ?? null) ? $conteudo['exemplos'] : []
       <section class="ef-lesson-section" id="conceito">
         <span class="ef-lesson-step">01 · ENTENDA</span>
         <h2>O que é esse conceito?</h2>
-        <p class="ef-lesson-paragraph"><?= e($conteudo['conceito']) ?></p>
+        <div class="ef-lesson-paragraph"><?= nl2br(e(str_replace('\\n', "\n", (string) ($conteudo['conceito'] ?? '')))) ?></div>
       </section>
 
       <section class="ef-lesson-section" id="exemplos">

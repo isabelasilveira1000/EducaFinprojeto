@@ -292,3 +292,51 @@
 .ef-nav .ef-logout{display:block}
 .ef-nav .ef-logout button{background:none;border:0;font:inherit;font-weight:500;color:#2d3a32;padding:9px 15px;border-radius:999px;cursor:pointer;white-space:nowrap}
 .ef-nav .ef-logout button:hover{color:var(--ef-green)}
+
+/* ===== ACABAMENTO EDUCAFIN: autenticação, aulas e quiz ===== */
+.ef-auth{padding:clamp(38px,6vw,76px) 24px;background:radial-gradient(circle at 12% 18%,rgba(220,240,230,.7),transparent 28%),var(--ef-bg)}
+.ef-auth-layout{width:min(1040px,100%);display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:24px}
+.ef-auth-art{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:570px;padding:42px;border-radius:30px;background:linear-gradient(145deg,#0b5d3b,#073d29);color:#fff;box-shadow:0 18px 40px rgba(6,48,28,.14)}
+.ef-auth-art:after{content:"";position:absolute;width:270px;height:270px;right:-115px;top:-110px;border:1px solid rgba(255,255,255,.16);border-radius:50%;box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 58px rgba(255,255,255,.025)}
+.ef-auth-art-tag,.ef-auth-art-note{position:relative;z-index:1;font-size:.75rem;font-weight:800;letter-spacing:.12em;color:#f4d77e}
+.ef-auth-illustration{position:relative;z-index:1;margin:24px -10px 14px}
+.ef-auth-illustration svg{display:block;width:100%;max-height:270px}
+.ef-auth-illustration .art-line{stroke:rgba(255,255,255,.45);stroke-width:3;fill:none;stroke-linecap:round}
+.ef-auth-illustration .art-card{fill:#dcefe4;stroke:rgba(255,255,255,.6);stroke-width:2}
+.ef-auth-illustration .art-card-light{fill:#fff8e8}
+.ef-auth-illustration .art-chart{stroke:#f4c94a;stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ef-auth-illustration .art-coin{fill:#f4c94a;stroke:#fff2c5;stroke-width:2}
+.ef-auth-illustration .art-coin-line{stroke:#78591a;stroke-width:2;fill:none;stroke-linecap:round}
+.ef-auth-illustration .art-leaf{stroke:#9ed4ae;stroke-width:7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ef-auth-art h2{position:relative;z-index:1;max-width:390px;margin:4px 0 12px;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;color:#fff}
+.ef-auth-art p{position:relative;z-index:1;max-width:390px;color:#d9e9df;font-family:var(--ef-serif);font-size:1.08rem;line-height:1.7}
+.ef-auth-art-note{margin-top:24px;letter-spacing:0;color:#e4f0e8;font-size:.88rem}
+.ef-auth-art-note span{color:#f4c94a;margin-right:7px}
+.ef-auth-card{align-self:center;max-width:none;padding:clamp(30px,4vw,48px);border-radius:30px;box-shadow:0 18px 45px rgba(6,48,28,.09),0 2px 6px rgba(0,0,0,.03)}
+.ef-auth-kicker{display:inline-block;margin-bottom:12px;color:var(--ef-green);font-size:.73rem;font-weight:800;letter-spacing:.13em}
+.ef-auth-card h1{font-size:clamp(2rem,3vw,2.5rem)}
+.ef-auth-card form{margin-top:8px}
+.ef-auth-card .ef-field input{transition:border-color .18s,box-shadow .18s,background .18s}
+.ef-auth-card .ef-field input:focus{background:#fcfffd}
+.ef-auth-card .ef-auth-btn{box-shadow:0 8px 18px rgba(11,93,59,.17);transition:transform .18s,box-shadow .18s,background .18s}
+.ef-auth-card .ef-auth-btn:hover{transform:translateY(-2px);box-shadow:0 12px 22px rgba(11,93,59,.22)}
+.ef-card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.ef-card:hover{transform:translateY(-4px);border-color:#c8dfd0}
+.ef-lesson-paragraph{white-space:normal}
+.ef-lesson-paragraph br{display:block;content:"";margin-bottom:.85em}
+.ef-quiz-form:before{content:"Progresso: " attr(data-answered);display:block;margin:0 0 14px;color:var(--ef-soft);font-size:.88rem;font-weight:700}
+.ef-quiz-option.is-answer-correct{border-color:#77ad8b;background:#edf7f0}
+.ef-quiz-option.is-answer-wrong{border-color:#d9948d;background:#fff2f0}
+.ef-quiz-option input:disabled{opacity:.85}
+.ef-quiz-result{display:flex;align-items:center;gap:18px}
+.ef-result-score{display:grid;place-items:center;flex:none;width:66px;height:66px;border-radius:20px;background:#d9eddf;color:#145b35;font-size:1.35rem}
+.ef-quiz-actions .ef-btn:disabled{opacity:.7;cursor:default}
+@media(max-width:760px){
+ .ef-auth-layout{grid-template-columns:1fr;max-width:520px}
+ .ef-auth-art{min-height:0;padding:28px;border-radius:24px}
+ .ef-auth-illustration{max-width:360px;margin:10px auto 0}
+ .ef-auth-illustration svg{max-height:190px}
+ .ef-auth-art h2{font-size:1.8rem}
+ .ef-auth-card{padding:32px 26px;border-radius:24px}
+}
+@media(max-width:460px){.ef-auth{padding:28px 14px 44px}.ef-auth-art{padding:24px}.ef-auth-card{padding:28px 20px}.ef-quiz-result{align-items:flex-start;gap:12px}.ef-result-score{width:54px;height:54px;border-radius:15px}}

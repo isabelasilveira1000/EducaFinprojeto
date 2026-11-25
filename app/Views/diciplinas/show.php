@@ -26,7 +26,7 @@ $n = count($d['conteudos']);
   <p class="ef-count"><?= $n ?> <?= $n === 1 ? 'conteúdo' : 'conteúdos' ?></p>
   <div class="ef-cards">
     <?php foreach ($d['conteudos'] as $c): ?>
-      <a class="ef-card" href="#">
+      <a class="ef-card" href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $c['slug'])) ?>">
         <div class="ef-card-top">
           <span class="ef-pill"><?= e($d['nome']) ?></span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>

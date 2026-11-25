@@ -136,13 +136,13 @@ $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JavaScript do Freelancer -->
-    <script src="<?= asset('js/scripts.js') ?>"></script>
+    <script src="<?= asset('js/scripts.js') ?>" defer></script>
 
     <!-- JavaScript do novo visual -->
-    <script src="<?= asset('js/educafin.js') ?>"></script>
+    <script src="<?= asset('js/educafin.js') ?>" defer></script>
 
     <!-- Interação do quiz das aulas -->
-    <script src="<?= asset('js/quiz-conteudo.js') ?>"></script>
+    <script src="<?= asset('js/quiz-conteudo.js') ?>" defer></script>
 
 </body>
 </html>
