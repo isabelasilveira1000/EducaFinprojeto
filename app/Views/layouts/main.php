@@ -155,53 +155,83 @@ $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
     </main>
 
     <!-- RODAPÉ -->
-    <footer class="ef-footer">
+    
+<!-- RODAPÉ -->
+<footer class="ef-footer">
 
-        <div class="ef-foot-in">
+    <div class="ef-footer-decoration"></div>
 
-            <div>
-                <a class="ef-brand" href="<?= e(url('home/index')) ?>">
-                    <span class="ef-logo" aria-hidden="true">Ef</span>
-                    EducaFin
-                </a>
+    <div class="ef-foot-in">
 
-                <p>
-                    Educação fiscal e financeira para você entender o dinheiro,
-                    estudar no seu ritmo e exercer a sua cidadania.
-                </p>
+        <!-- IDENTIDADE DO SITE -->
+        <div class="ef-footer-about">
+            <a class="ef-footer-brand" href="<?= e(url('home/index')) ?>">
+                <span class="ef-footer-logo">Ef</span>
+                <span>EducaFin</span>
+            </a>
+
+            <p>
+                Aprender hoje para transformar o amanhã.
+                Educação fiscal e financeira para construir
+                escolhas mais conscientes e um futuro melhor.
+            </p>
+
+            <div class="ef-footer-social">
+                <span><i class="fa-solid fa-book-open"></i></span>
+                <span><i class="fa-solid fa-coins"></i></span>
+                <span><i class="fa-solid fa-graduation-cap"></i></span>
             </div>
-
-            <div class="ef-fcol">
-                <h4>Disciplinas</h4>
-
-                <ul>
-                    <?php foreach ($disciplinasMenu as $d): ?>
-                        <li>
-                            <a href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $d['conteudos'][0]['slug'])) ?>">
-                                <?= e($d['nome']) ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-            <div class="ef-fcol">
-                <h4>EducaFin</h4>
-
-                <ul>
-                    <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Fale conosco</a></li>
-                    <li><a href="#">Política de privacidade</a></li>
-                </ul>
-            </div>
-
         </div>
 
-        <div class="ef-copy">
-            &copy; <?= date('Y') ?> EducaFin. Todos os direitos reservados.
+        <!-- DISCIPLINAS -->
+        <div class="ef-fcol">
+            <h4>Explore as disciplinas</h4>
+
+            <ul>
+                <?php foreach ($disciplinasMenu as $d): ?>
+                    <li>
+                        <a href="<?= e(url('disciplina/conteudo/' . $d['slug'] . '/' . $d['conteudos'][0]['slug'])) ?>">
+                            <?= e($d['nome']) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
 
-    </footer>
+        <!-- SOBRE -->
+        <div class="ef-fcol">
+            <h4>Conheça o EducaFin</h4>
+
+            <ul>
+                <li><a href="#">Sobre o projeto</a></li>
+                <li><a href="#">Nossa proposta</a></li>
+                <li><a href="#">Fale conosco</a></li>
+            </ul>
+        </div>
+
+        <!-- DESTAQUE -->
+        <div class="ef-footer-message">
+            <span class="ef-footer-message-icon">
+                <i class="fa-solid fa-lightbulb"></i>
+            </span>
+
+            <h4>Conhecimento é investimento!</h4>
+
+            <p>
+                Quanto mais você aprende, melhores
+                escolhas pode fazer.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="ef-copy">
+        <span>© <?= date('Y') ?> EducaFin</span>
+        <span>Educação que transforma. Conhecimento que liberta.</span>
+    </div>
+
+</footer>
+
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
