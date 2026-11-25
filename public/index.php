@@ -22,6 +22,10 @@ if (!function_exists('url')) {
     exit('helpers.php não encontrado: coloque-o na raiz do projeto ou em app/');
 }
 
+// Sessão: guarda quem está logado
+session_set_cookie_params(['httponly' => true, 'samesite' => 'Lax']);
+session_start();
+
 // Autoload: App\Controllers\UserController => app/Controllers/UserController.php
 spl_autoload_register(static function (string $class) use ($root): void {
     $prefix = 'App\\';

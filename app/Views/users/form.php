@@ -59,6 +59,6 @@ $old = $old ?? [];
             <button type="submit" class="ef-btn ef-auth-btn">Cadastrar</button>
         </form>
 
-        <p class="ef-auth-alt"><a href="<?= e(url('user/index')) ?>">Ver usuários cadastrados</a></p>
+        <p class="ef-auth-alt">Já tem uma conta? <a href="<?= e(url('user/login')) ?>">Entrar</a></p>
     </div>
 </section>

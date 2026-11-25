@@ -14,6 +14,10 @@ $pageContent = isset($content) && is_string($content)
 require_once __DIR__ . '/../../Models/Disciplina.php';
 $disciplinasMenu = \App\Models\Disciplina::all();
 $ativa = isset($disciplinaAtiva) && is_string($disciplinaAtiva) ? $disciplinaAtiva : '';
+
+// Login: o menu muda conforme a pessoa esteja logada ou não
+$logado = !empty($_SESSION['user_id']);
+$_SESSION['csrf'] ??= bin2hex(random_bytes(32));
 ?>
 
 <!DOCTYPE html>
@@ -74,8 +78,18 @@ $ativa = isset($disciplinaAtiva) && is_string($disciplinaAtiva) ? $disciplinaAti
                            <?= $ativa === $d['slug'] ? 'aria-current="page"' : '' ?>><?= e($d['nome']) ?></a>
                     </li>
                 <?php endforeach; ?>
-                <li class="ef-right"><a href="<?= e(url('user/index')) ?>">Usuários</a></li>
-                <li><a href="<?= e(url('user/create')) ?>">Cadastrar</a></li>
+                <?php if ($logado): ?>
+                    <li class="ef-right"><a href="<?= e(url('user/perfil')) ?>">Usuário</a></li>
+                    <li>
+                        <form class="ef-logout" method="post" action="<?= e(url('user/logout')) ?>">
+                            <input type="hidden" name="csrf" value="<?= e($_SESSION['csrf']) ?>">
+                            <button type="submit">Sair</button>
+                        </form>
+                    </li>
+                <?php else: ?>
+                    <li class="ef-right"><a href="<?= e(url('user/login')) ?>">Entrar</a></li>
+                    <li><a href="<?= e(url('user/create')) ?>">Cadastrar</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

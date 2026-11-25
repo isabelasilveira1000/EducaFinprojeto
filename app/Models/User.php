@@ -16,9 +16,18 @@ class User
     public static function find(int $id): ?array
     {
         $stmt = Database::connect()->prepare(
-            'SELECT id, name, email FROM users WHERE id = ?'
+            'SELECT id, name, email, phone FROM users WHERE id = ?'
         );
         $stmt->execute([$id]);
+        return $stmt->fetch() ?: null;
+    }
+
+    public static function findByEmail(string $email): ?array
+    {
+        $stmt = Database::connect()->prepare(
+            'SELECT id, name, email, password_hash FROM users WHERE email = ?'
+        );
+        $stmt->execute([$email]);
         return $stmt->fetch() ?: null;
     }
 

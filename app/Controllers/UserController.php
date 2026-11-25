@@ -82,9 +82,113 @@ class UserController
             return;
         }
 
-        User::create($input['name'], $input['email'], $input['phone'], $input['password']);
-        header('Location: ' . url('user/index'));
+        $id = User::create($input['name'], $input['email'], $input['phone'], $input['password']);
+        session_regenerate_id(true);
+        $_SESSION['user_id'] = $id;
+        header('Location: ' . url('user/perfil'));
         exit;
+    }
+
+    public function login(): void
+    {
+        if (!empty($_SESSION['user_id'])) {
+            header('Location: ' . url('user/perfil'));
+            exit;
+        }
+
+        $this->render('users/login', [
+            'title' => 'Entrar',
+            'errors' => [],
+            'old' => [],
+            'csrf' => $this->csrfToken(),
+        ]);
+    }
+
+    public function authenticate(): void
+    {
+        $this->requirePost();
+        $this->checkCsrf();
+
+        $email = trim($_POST['email'] ?? '');
+        $password = (string) ($_POST['password'] ?? '');
+
+        $user = $email !== '' ? User::findByEmail($email) : null;
+
+        if (!$user || !password_verify($password, $user['password_hash'])) {
+            http_response_code(422);
+            $this->render('users/login', [
+                'title' => 'Entrar',
+                'errors' => ['login' => 'E-mail ou senha incorretos.'],
+                'old' => ['email' => $email],
+                'csrf' => $this->csrfToken(),
+            ]);
+            return;
+        }
+
+        session_regenerate_id(true);
+        $_SESSION['user_id'] = (int) $user['id'];
+        header('Location: ' . url('user/perfil'));
+        exit;
+    }
+
+    public function logout(): void
+    {
+        $this->requirePost();
+        $this->checkCsrf();
+
+        unset($_SESSION['user_id']);
+        session_regenerate_id(true);
+        header('Location: ' . url('home/index'));
+        exit;
+    }
+
+    public function perfil(): void
+    {
+        $this->render('users/perfil', [
+            'title' => 'Meu perfil',
+            'user' => $this->requireLogin(),
+        ]);
+    }
+
+    public function plano(): void
+    {
+        $this->requireLogin();
+
+        // Ainda não existe tabela de progresso: "feitos" fica em 0 até registrar o que foi estudado.
+        $itens = array_map(static fn (array $d): array => [
+            'nome' => $d['nome'],
+            'url' => url('disciplina/conteudo/' . $d['slug'] . '/' . $d['conteudos'][0]['slug']),
+            'feitos' => 0,
+            'total' => count($d['conteudos']),
+        ], array_values(Disciplina::all()));
+
+        $this->render('users/plano', [
+            'title' => 'Plano de estudos',
+            'itens' => $itens,
+        ]);
+    }
+
+    private function requirePost(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            exit('Método não permitido');
+        }
+    }
+
+    /** Devolve o usuário logado ou manda para o login. */
+    private function requireLogin(): array
+    {
+        $id = (int) ($_SESSION['user_id'] ?? 0);
+        $user = $id > 0 ? User::find($id) : null;
+
+        if (!$user) {
+            unset($_SESSION['user_id']);
+            header('Location: ' . url('user/login'));
+            exit;
+        }
+
+        return $user;
     }
 
     private function csrfToken(): string
