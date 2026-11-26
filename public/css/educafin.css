@@ -1,4 +1,4 @@
-:root{--ef-bg:#fbf8f0;--ef-card:#fffefb;--ef-line:#e8e4d9;--ef-grid:rgba(6,48,28,.12);--ef-ink:#06301c;--ef-soft:#4f5a52;--ef-green:#0b5d3b;--ef-chip:#dcf0e6;--ef-yellow:#f4c94a;--ef-mark:#fbe77a;--ef-sans:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--ef-serif:"Source Serif 4",Georgia,serif}
+:root{--ef-bg:#fbf8f0;--ef-card:#fffefb;--ef-line:#e8e4d9;--ef-ink:#06301c;--ef-soft:#4f5a52;--ef-green:#0b5d3b;--ef-chip:#dcf0e6;--ef-yellow:#f4c94a;--ef-mark:#fbe77a;--ef-sans:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--ef-serif:"Source Serif 4",Georgia,serif}
 .ef-body{background:var(--ef-bg);color:var(--ef-ink);font-family:var(--ef-sans);line-height:1.5}
 :where(.ef-top,.ef-nav,.ef-hero,.ef-sec,.ef-footer) *{margin:0}
 .ef-body a{color:inherit;text-decoration:none}
@@ -19,13 +19,13 @@
 .ef-nav .ef-right{margin-left:auto}
 
 /* hero */
-.ef-hero{background-image:linear-gradient(var(--ef-grid) 1px,transparent 1px),linear-gradient(90deg,var(--ef-grid) 1px,transparent 1px);background-size:52px 52px;border-bottom:1px solid var(--ef-line)}
+.ef-hero{background-image:linear-gradient(var(--ef-line) 1px,transparent 1px),linear-gradient(90deg,var(--ef-line) 1px,transparent 1px);background-size:52px 52px;border-bottom:1px solid var(--ef-line)}
 .ef-hero-in{max-width:1440px;margin:0 auto;padding:96px 24px 120px;display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
 .ef-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ef-line);background:var(--ef-bg);border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ef-green)}
 .ef-hero h1{font-size:clamp(2.8rem,6vw,4.6rem);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:22px 0 26px}
 .ef-hero mark{background:linear-gradient(transparent 62%,var(--ef-mark) 62%);color:inherit;padding:0 6px 0 0}
 .ef-lead{font-family:var(--ef-serif);font-size:1.35rem;line-height:1.65;color:var(--ef-soft);max-width:30em;margin-bottom:34px}
-.ef-hero .ef-search{height:68px;padding:0 8px 0 22px;max-width:720px;box-shadow:0 4px 14px rgba(6,48,28,.06)}
+.ef-hero .ef-search{height:68px;padding:0 8px 0 22px;max-width:720px;box-shadow:0 4px 14px rgba(3, 24, 14, 0.06)}
 .ef-hero .ef-search input{font-size:1.1rem}
 .ef-btn{background:var(--ef-green);color:#fff;border:0;border-radius:999px;padding:14px 24px;font:inherit;font-weight:700;cursor:pointer}
 .ef-btn:hover{background:#094a2f}
@@ -93,7 +93,7 @@
 .ef-index li a:hover{text-decoration:underline}
 
 /* página da disciplina */
-.ef-dhero{background-image:linear-gradient(var(--ef-grid) 1px,transparent 1px),linear-gradient(90deg,var(--ef-grid) 1px,transparent 1px);background-size:52px 52px;border-bottom:1px solid var(--ef-line)}
+.ef-dhero{background-image:linear-gradient(var(--ef-line) 1px,transparent 1px),linear-gradient(90deg,var(--ef-line) 1px,transparent 1px);background-size:52px 52px;border-bottom:1px solid var(--ef-line)}
 .ef-dhero-in{max-width:1440px;margin:0 auto;padding:64px 24px 72px}
 .ef-crumb{color:var(--ef-soft);margin-bottom:22px}
 .ef-crumb a:hover{text-decoration:underline}
